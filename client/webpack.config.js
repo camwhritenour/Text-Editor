@@ -25,9 +25,11 @@ module.exports = () => {
       }),
       new InjectManifest({
         swSrc: './src-sw.js',
-        swDest: 'service-worker.js',
+        swDest: 'src-sw.js',
       }),
       new WebpackPwaManifest({
+        inject: true,
+        fingerprints: false,
         name: 'Text Editor',
         short_name: 'Text Editor',
         description: 'Edit your texts!',
@@ -35,11 +37,12 @@ module.exports = () => {
         theme_color: '#7eb4e2',
         start_url: './',
         publicPath: './',
+        display: 'standalone',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
-            destination: path.join('src', 'icons'),
+            destination: path.join('assets', 'icons'),
           },
         ],
       }),
